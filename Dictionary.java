@@ -8,6 +8,8 @@ import java.util.Scanner;
 public class Dictionary {
 
 	private static ArrayList<String> dict = new ArrayList<String>();
+	public static ArrayList<String> startWords = new ArrayList<String>();
+	public static ArrayList<String> endWords = new ArrayList<String>();
 
 	public static void instantiate() throws FileNotFoundException {
 		scanFile("C:\\Users\\subhargava\\Downloads\\Hamlet.txt");
@@ -19,8 +21,19 @@ public class Dictionary {
 		Scanner input = new Scanner(System.in);
 		File file = new File(fileName);
 		Scanner s = new Scanner(file);
+		boolean flag = false;
 		while (s.hasNext()) {
 			String token = s.next();
+			if(flag == true){
+				startWords.add(getToken(token).toLowerCase());
+//				System.out.println(startWords);
+				flag = false;
+			}
+//			System.out.println(token);
+			if(token.contains(".")){
+				endWords.add(getToken(token).toLowerCase());
+				flag = true;
+			}	
 			String word = getToken(token).toLowerCase();
 			dict.add(word);
 		}
@@ -28,7 +41,7 @@ public class Dictionary {
 	}
 
 	public static String getToken(String token) {
-		return token.replaceAll("[;.“:‘,—\"(?)!'-]", "");
+		return token.replaceAll("[;.“:‘,—\"(?)!\\[\\]'-*]", "");
 	}
 
 	public static ArrayList<String> getDict() {

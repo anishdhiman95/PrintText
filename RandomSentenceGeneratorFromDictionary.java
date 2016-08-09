@@ -33,5 +33,7 @@ public class RandomSentenceGeneratorFromDictionary {
 		}
 		return this.dictionary.get(1 + occurenceOfCurrentWord.get(randomKey(0, occurenceOfCurrentWord.size() - 1)));
 	}
+	
+	public String getEndWord()
 
 }
