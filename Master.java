@@ -10,17 +10,18 @@ public class Master {
 		Dictionary.instantiate();
 		ArrayList<String> dict = Dictionary.getDict();
 		RandomSentenceGeneratorFromDictionary rwDict = new RandomSentenceGeneratorFromDictionary(dict);
-		RandomWordGeneratorFromLetters rw = new RandomWordGeneratorFromLetters();
-		System.out.println("Sentence generated using Random letters: "+ rw.generateSentence(4, wordsPerSentence));
+		RandomSentenceGeneratorFromLetters rw = new RandomSentenceGeneratorFromLetters();
+		System.out.println("Sentence generated using Random letters: " + rw.generateSentence(5, wordsPerSentence));
 		System.out.println("Sentence generated using Random words from dictionary: " + rwDict.generateSentence());
 		String startWord = Dictionary.startWords.get(rwDict.randomKey(0, Dictionary.startWords.size()));
 		String sentence = startWord + " ";
 		System.out.println("Start Word :" + startWord);
 		while (wordsPerSentence > 1) {
 			String newWord = rwDict.getNextWord(startWord);
-			while (Dictionary.endWords.contains(newWord) && wordsPerSentence==2){
-				 newWord = rwDict.getNextWord(startWord);
-			}
+			// while (Dictionary.endWords.contains(newWord) &&
+			// wordsPerSentence==2){
+			// newWord = rwDict.getNextWord(startWord);
+			// }
 			String currWord = newWord;
 			sentence += currWord + " ";
 			startWord = currWord;

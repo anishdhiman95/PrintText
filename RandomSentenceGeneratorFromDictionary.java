@@ -33,10 +33,16 @@ public class RandomSentenceGeneratorFromDictionary {
 		}
 		return this.dictionary.get(1 + occurenceOfCurrentWord.get(randomKey(0, occurenceOfCurrentWord.size() - 1)));
 	}
-	
-	public String getEndWord(String currWord, ArrayList<String> endWords){
+
+	public String getEndWord(String currWord, ArrayList<String> endWords) {
 		String next = getNextWord(currWord);
-		if(endWords.contains(next)) return next;
-		else return endWords.get(randomKey(0,endWords.size()));
+		int len = endWords.size();
+		while (len > 0) {
+			if (endWords.contains(next))
+				return next;
+			next = getNextWord(next);
+			len--;
+		}
+		return endWords.get(randomKey(0, endWords.size()));
 	}
 }

@@ -24,14 +24,14 @@ public class Dictionary {
 		boolean flag = false;
 		while (s.hasNext()) {
 			String token = s.next();
-			if(flag == true){
+			if (flag == true) {
 				startWords.add(getToken(token).toLowerCase());
 				flag = false;
 			}
-			if(token.contains(".")){
+			if (token.contains(".")) {
 				endWords.add(getToken(token).toLowerCase());
 				flag = true;
-			}	
+			}
 			String word = getToken(token).toLowerCase();
 			dict.add(word);
 		}
