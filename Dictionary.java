@@ -26,10 +26,8 @@ public class Dictionary {
 			String token = s.next();
 			if(flag == true){
 				startWords.add(getToken(token).toLowerCase());
-//				System.out.println(startWords);
 				flag = false;
 			}
-//			System.out.println(token);
 			if(token.contains(".")){
 				endWords.add(getToken(token).toLowerCase());
 				flag = true;
@@ -41,7 +39,7 @@ public class Dictionary {
 	}
 
 	public static String getToken(String token) {
-		return token.replaceAll("[;.“:‘,—\"(?)!\\[\\]'-*]", "");
+		return token.replaceAll("[;.“:‘,—\"(?)--!\\[\\]'-*]", "");
 	}
 
 	public static ArrayList<String> getDict() {

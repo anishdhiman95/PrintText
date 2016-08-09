@@ -34,6 +34,9 @@ public class RandomSentenceGeneratorFromDictionary {
 		return this.dictionary.get(1 + occurenceOfCurrentWord.get(randomKey(0, occurenceOfCurrentWord.size() - 1)));
 	}
 	
-	public String getEndWord()
-
+	public String getEndWord(String currWord, ArrayList<String> endWords){
+		String next = getNextWord(currWord);
+		if(endWords.contains(next)) return next;
+		else return endWords.get(randomKey(0,endWords.size()));
+	}
 }
