@@ -1,42 +1,37 @@
-package File.File1;
-
 import java.util.*;
 
 public class RandomSentenceGeneratorFromDictionary {
-	Map<String,Integer> dictionary = null;
-	
-	public RandomSentenceGeneratorFromDictionary(Map<String,Integer> dict){
-		this.dictionary=dict;
+	ArrayList<String> dictionary = null;
+
+	public RandomSentenceGeneratorFromDictionary(ArrayList<String> dict) {
+		this.dictionary = dict;
 	}
-	
-	public ArrayList<String> mapToList(Map<String,Integer> dict){
-		ArrayList<String> ListOfWords = new ArrayList<String>();
-		Set keys = dict.keySet();
-		   for (Iterator i = keys.iterator(); i.hasNext(); ) {
-		       ListOfWords.add((String) i.next());
-		   }
-		   return ListOfWords;
+
+	public int randomKey(int min, int max) {
+		return min + (int) (Math.random() * ((max - min) + 1));
 	}
-	
-	public int randomKey(){
-		int Max = this.dictionary.size();
-		int Min = 0;
-		return Min + (int)(Math.random() * ((Max - Min) + 1));
+
+	public String generateRandomWord() {
+		return this.dictionary.get(randomKey(0, this.dictionary.size()));
 	}
-	
-	public String generateWord (ArrayList<String> ListOfWords) {
-		return ListOfWords.get(randomKey());
-	}
-	
-	public String generateSentence(ArrayList<String> ListOfWords){
+
+	public String generateSentence() {
 		int wordsPerSent = 9;
 		String sent = "";
-		while(wordsPerSent>0){
-			sent += generateWord(ListOfWords) + " ";
+		while (wordsPerSent > 0) {
+			sent += generateRandomWord() + " ";
 			wordsPerSent--;
 		}
 		return sent;
 	}
+
+	public String getNextWord(String currWord) {
+		ArrayList<Integer> occurenceOfCurrentWord = new ArrayList<Integer>();
+		for (int i = 0; i < this.dictionary.size(); i++) {
+			if (this.dictionary.get(i).equals(currWord))
+				occurenceOfCurrentWord.add(i);
+		}
+		return this.dictionary.get(1 + occurenceOfCurrentWord.get(randomKey(0, occurenceOfCurrentWord.size() - 1)));
+	}
+
 }
-
-
